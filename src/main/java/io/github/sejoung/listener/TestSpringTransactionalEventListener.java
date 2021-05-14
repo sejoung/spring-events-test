@@ -23,7 +23,7 @@ public class TestSpringTransactionalEventListener {
 
   @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK)
   public void handleAfterRollback(TestSpringEvent event) {
-    log.debug("AFTER COMPLETION {}", event);
+    log.debug("AFTER ROLLBACK {}", event);
   }
 
   @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)

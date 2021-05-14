@@ -1,11 +1,10 @@
 package io.github.sejoung.service;
 
-import javax.transaction.Transactional;
-
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.transaction.TestTransaction;
 
 @SpringBootTest
 class TestServiceTest {
@@ -13,11 +12,16 @@ class TestServiceTest {
   @Autowired
   private TestService service;
 
-  @Transactional
+  @DisplayName("정상이벤트")
   @Test
   void event() {
     service.test();
-    TestTransaction.flagForCommit();
-    TestTransaction.end();
   }
+
+  @DisplayName("롤백이벤트")
+  @Test
+  void rollbackEvent() {
+    Assertions.assertThatThrownBy(() -> service.testRollBack()).isInstanceOf(RuntimeException.class);
+  }
+
 }
