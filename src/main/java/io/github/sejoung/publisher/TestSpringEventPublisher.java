@@ -16,7 +16,7 @@ public class TestSpringEventPublisher {
 
   public void publishCustomEvent(final String message) {
     log.debug("Publishing custom event. ");
-    applicationEventPublisher.publishEvent(new TestSpringEvent(this, message));
+    applicationEventPublisher.publishEvent(new TestSpringEvent<>(this, message));
   }
 
 }
