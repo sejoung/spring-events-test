@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TestSpringEventListener {
 
   @EventListener
-  public void handleTestSpringEvent(TestSpringEvent event) {
+  public <T> void handleTestSpringEvent(TestSpringEvent<T> event) {
     log.debug("event listener {}", event);
   }
 

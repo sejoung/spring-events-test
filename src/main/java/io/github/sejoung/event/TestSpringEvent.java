@@ -7,11 +7,11 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class TestSpringEvent extends ApplicationEvent {
+public class TestSpringEvent<T> extends ApplicationEvent {
 
-  private final String message;
+  private final T message;
 
-  public TestSpringEvent(Object source, String message) {
+  public TestSpringEvent(Object source, T message) {
     super(source);
     this.message = message;
   }

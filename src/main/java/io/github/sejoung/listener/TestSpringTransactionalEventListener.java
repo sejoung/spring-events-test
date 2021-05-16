@@ -12,22 +12,22 @@ import lombok.extern.slf4j.Slf4j;
 public class TestSpringTransactionalEventListener {
 
   @TransactionalEventListener
-  public void handleAfterCommit(TestSpringEvent event) {
+  public <T> void handleAfterCommit(TestSpringEvent<T> event) {
     log.debug("AFTER COMMIT {}", event);
   }
 
   @TransactionalEventListener(phase = TransactionPhase.AFTER_COMPLETION)
-  public void handleAfterCompletion(TestSpringEvent event) {
+  public <T> void handleAfterCompletion(TestSpringEvent<T> event) {
     log.debug("AFTER COMPLETION {}", event);
   }
 
   @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK)
-  public void handleAfterRollback(TestSpringEvent event) {
+  public <T> void handleAfterRollback(TestSpringEvent<T> event) {
     log.debug("AFTER ROLLBACK {}", event);
   }
 
   @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
-  public void handleBeforeCommit(TestSpringEvent event) {
+  public <T> void handleBeforeCommit(TestSpringEvent<T> event) {
     log.debug("BEFORE COMMIT {}", event);
   }
 
