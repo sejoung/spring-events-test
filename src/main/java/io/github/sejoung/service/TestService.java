@@ -19,14 +19,15 @@ public class TestService {
 
   @Transactional
   public void test() {
-    repository.save(Person.builder().lastName("zolla").firstName("test").createDate(LocalDateTime.now()).build());
-    eventPublisher.publishCustomEvent("잘간다.");
+    var person = repository.save(
+      Person.builder().lastName("zolla").firstName("test").createDate(LocalDateTime.now()).build());
+    eventPublisher.publishCustomEvent(person.toString());
   }
 
   @Transactional
   public void testRollBack() {
-    repository.save(Person.builder().lastName("zolla").firstName("test").createDate(LocalDateTime.now()).build());
-    eventPublisher.publishCustomEvent("롤백테스트");
+    var person =repository.save(Person.builder().lastName("zolla").firstName("test").createDate(LocalDateTime.now()).build());
+    eventPublisher.publishCustomEvent(person.toString());
     throw new RuntimeException("에러닷");
   }
 }
